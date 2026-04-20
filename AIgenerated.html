@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NYC Joke Generator</title>
+    <style>
+        /* CSS: Styling the App */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .app-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        h1 { color: #2c3e50; font-size: 24px; }
+
+        #joke-setup {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 20px 0;
+            color: #34495e;
+        }
+
+        #joke-punchline {
+            font-style: italic;
+            color: #e67e22;
+            margin-bottom: 20px;
+            min-height: 24px;
+        }
+
+        button {
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #34495e;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <h1>🗽 NYC Joke Generator</h1>
+        <p id="joke-setup">Press the button for a laugh!</p>
+        <p id="joke-punchline"></p>
+        
+        <button id="joke-btn">Tell me a joke!</button>
+        
+        <a href="fromscratch.html" class="back-link">← Back to NYC Life</a>
+    </div>
+
+    <script>
+        // JavaScript: The Logic
+        const jokes = [
+            { setup: "Why do New Yorkers always fail at hide and seek?", punchline: "Because good luck finding a spot that isn't already rented for $3,000!" },
+            { setup: "What do you call a New Yorker who is actually nice?", punchline: "A tourist." },
+            { setup: "How many New Yorkers does it take to change a lightbulb?", punchline: "None. They just complain about the darkness until the landlord fixes it." },
+            { setup: "Why did the Statue of Liberty fail her driving test?", punchline: "Because she couldn't stop holding up her arm!" },
+            { setup: "What is a New Yorker's favorite type of coffee?", punchline: "The kind that's served in a 'we are happy to serve you' blue cup." },
+            { setup: "Why don't New Yorkers use umbrellas?", punchline: "Because the wind just turns them into expensive modern art pieces." }
+        ];
+
+        const setupDisplay = document.getElementById('joke-setup');
+        const punchlineDisplay = document.getElementById('joke-punchline');
+        const btn = document.getElementById('joke-btn');
+
+        let isShowingPunchline = false;
+        let currentJoke = {};
+
+        btn.addEventListener('click', () => {
+            if (!isShowingPunchline) {
+                // Pick a random joke
+                currentJoke = jokes[Math.floor(Math.random() * jokes.length)];
+                
+                // Show Setup
+                setupDisplay.innerText = currentJoke.setup;
+                punchlineDisplay.innerText = "";
+                btn.innerText = "Show Answer";
+                isShowingPunchline = true;
+            } else {
+                // Show Punchline
+                punchlineDisplay.innerText = currentJoke.punchline;
+                btn.innerText = "Want another?";
+                isShowingPunchline = false;
+            }
+        });
+    </script>
+
+</body>
+</html>
